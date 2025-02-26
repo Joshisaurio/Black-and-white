@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://dik1qvgrbwc0o"]
+
+[sub_resource type="Gradient" id="Gradient_88a0g"]
+colors = PackedColorArray(0.206035, 0.434083, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1um84"]
+gradient = SubResource("Gradient_88a0g")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Curve" id="Curve_khet8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uhff0"]
+curve = SubResource("Curve_khet8")
+
+[sub_resource type="Curve" id="Curve_qdbax"]
+_data = [Vector2(0, 0.67033), 0.0, 0.0, 0, 0, Vector2(0.38, 0.527472), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_irgtw"]
+curve = SubResource("Curve_qdbax")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_argpo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(550, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = 30.0
+angular_velocity_max = 30.0
+scale_min = 0.4
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_irgtw")
+alpha_curve = SubResource("CurveTexture_uhff0")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+turbulence_noise_strength = 3.0
+
+[sub_resource type="Gradient" id="Gradient_0xbxw"]
+colors = PackedColorArray(0.207843, 0.435294, 1, 1, 0.207843, 0.435294, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_73lqm"]
+gradient = SubResource("Gradient_0xbxw")
+
+[node name="background" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1um84")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(551, 725)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_argpo")
+texture = SubResource("GradientTexture2D_73lqm")
+lifetime = 3.0
+preprocess = 2.0
