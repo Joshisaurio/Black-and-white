@@ -12,6 +12,13 @@ var dead : bool = false
 var respawn_point : Vector2 = Vector2(160, -100)
 
 func _physics_process(delta: float) -> void:
+	if $RespawnTimer.time_left == 0:
+		if dead:
+			position = respawn_point
+			black = true
+			dead = false
+		show()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -37,9 +44,11 @@ func _physics_process(delta: float) -> void:
 	if black:
 		collision_mask = 2
 		modulate = "000000"
+		$CanvasLayer/TextureRect.visible = false
 	else:
 		collision_mask = 1
 		modulate = "ffffff"
+		$CanvasLayer/TextureRect.visible = true
 		
 	if $Hurtbox.has_overlapping_bodies() and not dead:
 		dead = true
@@ -50,17 +59,11 @@ func _physics_process(delta: float) -> void:
 		get_parent().add_child(particles)
 		$RespawnTimer.start()
 		hide()
-	
-	if not $Hurtbox.has_overlapping_bodies():
-		if dead:
-			black = true
-			dead = false
-		show()
 		
 
 	move_and_slide()
-
+"""
 func _on_respawn_timer_timeout() -> void:
 	position = respawn_point
-	black = true
+	black = true"""
 	

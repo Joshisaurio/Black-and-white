@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://daw0nax1rq3ic"]
+
+[ext_resource type="Script" path="res://scripts/flag.gd" id="1_ln2mq"]
+[ext_resource type="Texture2D" uid="uid://ddl5xn6psbgjb" path="res://assets/Tileset.png" id="1_onv2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_buaes"]
+size = Vector2(64, 64)
+
+[sub_resource type="Curve" id="Curve_6abw7"]
+_data = [Vector2(0.433333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_46uj2"]
+curve = SubResource("Curve_6abw7")
+
+[sub_resource type="Curve" id="Curve_j34fu"]
+_data = [Vector2(0.0466667, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_oaarh"]
+curve = SubResource("Curve_j34fu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i2kb2"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_oaarh")
+alpha_curve = SubResource("CurveTexture_46uj2")
+
+[sub_resource type="Gradient" id="Gradient_8pjd8"]
+offsets = PackedFloat32Array(0.383117, 0.5, 0.597403)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uwede"]
+gradient = SubResource("Gradient_8pjd8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="Flag" type="Area2D"]
+modulate = Color(0, 0.563816, 5.77569e-07, 1)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_ln2mq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_onv2k")
+region_enabled = true
+region_rect = Rect2(321, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_buaes")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_i2kb2")
+texture = SubResource("GradientTexture2D_uwede")
+one_shot = true
+preprocess = 0.3
+explosiveness = 0.3

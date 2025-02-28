@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dik1qvgrbwc0o"]
 
 [sub_resource type="Gradient" id="Gradient_88a0g"]
-colors = PackedColorArray(0.206035, 0.434083, 1, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.616, 0.6908, 0.88, 1, 0.79, 0.79, 0.79, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1um84"]
 gradient = SubResource("Gradient_88a0g")
@@ -42,12 +42,14 @@ hue_variation_max = 0.00999998
 turbulence_noise_strength = 3.0
 
 [sub_resource type="Gradient" id="Gradient_0xbxw"]
-colors = PackedColorArray(0.207843, 0.435294, 1, 1, 0.207843, 0.435294, 1, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.3808, 0.431573, 0.56, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_73lqm"]
 gradient = SubResource("Gradient_0xbxw")
 
 [node name="background" type="CanvasLayer"]
+layer = -2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -58,7 +60,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_1um84")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(551, 725)
+position = Vector2(543, 681)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_argpo")
 texture = SubResource("GradientTexture2D_73lqm")
