@@ -1,7 +1,28 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://6mn7wd4ampgs"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://6mn7wd4ampgs"]
+
+[ext_resource type="FontFile" uid="uid://bpvugpe4xw3ab" path="res://assets/Cornerstone.ttf" id="1_c3mbb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rx3d6"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3x7b"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_47u84"]
+color = Color(1, 1, 1, 1)
+grow_begin = -5.0
+grow_end = -5.0
+vertical = true
+
 [resource]
+Label/fonts/font = ExtResource("1_c3mbb")
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 0
+Panel/styles/panel = SubResource("StyleBoxFlat_rx3d6")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_f3x7b")
+VSeparator/constants/separation = 5
+VSeparator/styles/separator = SubResource("StyleBoxLine_47u84")
